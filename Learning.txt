@@ -1,0 +1,10 @@
+ // Databe query log 
+composer require  barryvdh/laravel-debugbar --dev
+
+ public function index()
+    {
+        \DB::enableQueryLog();
+        $questions = Question::with('user')->latest()->paginate(5);
+         view('questions.index', compact('questions'))->render();
+        dd(\DB::getQueryLog());
+    }
