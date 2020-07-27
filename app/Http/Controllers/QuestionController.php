@@ -40,7 +40,8 @@ class QuestionController extends Controller
      */
     public function store(AskQuestionRequest $request)
     {
-        $request->user()->question()->create($request->only('title', 'body'));
+        // dd($request->user()->questions());
+        $request->user()->questions()->create($request->only('title', 'body'));
         return redirect()->route('questions.index')->with('success', 'Your question has been submited');
         
     }
@@ -64,7 +65,8 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        $question = Question::findOrFail($question->id);
+        return view('questions.edit', compact('question'));
     }
 
     /**

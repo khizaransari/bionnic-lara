@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 
 Route::resource('questions', 'QuestionController');
+
+Route::get('user', function () {
+    // return auth()->user->name;
+});
